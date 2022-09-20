@@ -1,0 +1,95 @@
+2.Develop an android application to display image from image source button is clicked?
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="112dp"
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
+ <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:orientation="horizontal"
+    android:layout_marginLeft="16dp"
+    tools:ignore="MissingConstraints"
+     android:layout_constraintTop_to_Bottomof="@+id/imageview">
+
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="showimage2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="308dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="showimage1"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="442dp" />
+ </LinearLayout>
+
+
+
+
+package com.example.imageview;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ImageView imageview;
+    private Button button1;
+    private Button button2;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        this.imageview=(ImageView)this.findViewById(R.id.imageview);
+        this.button1=(Button)this.findViewById(R.id.button1);
+        this.button2=(Button)this.findViewById(R.id.button2);
+        this.button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showimage1();
+            }
+        });
+        this.button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showimage2();
+            }
+        });
+    }
+    private void showimage1(){
+        this.imageview.setImageResource(R.drawable.flower1);
+    }
+    private void showimage2() {
+        this.imageview.setImageResource(R.drawable.flower2);
+    }
+}
