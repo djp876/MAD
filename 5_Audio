@@ -1,0 +1,91 @@
+5.Develop an android application to play audio?
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+
+<Button
+android:id="@+id/play"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:layout_marginStart="151dp"
+android:layout_marginLeft="151dp"
+android:layout_marginTop="233dp"
+android:onClick="b1play"
+android:text="play"
+tools:layout_editor_absolutex="124dp"
+tools:layout_editor_absolutey="79dp" />
+
+<Button
+android:id="@+id/pause"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:layout_marginStart="148dp"
+android:layout_marginLeft="148dp"
+android:layout_marginTop="314dp"
+android:onClick="b2pause"
+android:text="pause"
+tools:layout_editor_absolutex="124dp"
+tools:layout_editor_absolutey="79dp" />
+
+<Button
+android:id="@+id/stop"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:layout_marginStart="153dp"
+android:layout_marginLeft="153dp"
+android:layout_marginTop="403dp"
+android:onClick="b3stop"
+android:text="stop"
+tools:layout_editor_absolutex="124dp"
+tools:layout_editor_absolutey="79dp" />
+
+</RelativeLayout>
+
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+Button b1,b2,b3;
+MediaPlayer m;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+b1=(Button)findViewById(R.id.play);
+b2=(Button)findViewById(R.id.pause);
+b3=(Button)findViewById(R.id.stop);
+m=MediaPlayer.create(MainActivity.this,R.raw.song);
+}
+public void b1play(View v)
+{
+m.start();
+}
+public void b2pause(View v)
+{
+m.pause();
+}
+public void b3stop(View v)
+{
+m.stop();
+m=MediaPlayer.create(MainActivity.this,R.raw.song);
+}
+}
