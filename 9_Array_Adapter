@@ -1,0 +1,40 @@
+9.Develop an android application to display item of list veiw using array adapter?
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ListView
+        android:id="@+id/userlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+</LinearLayout>
+
+
+
+
+package com.example.list;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class MainActivity extends AppCompatActivity {
+    private ListView mListView;
+    private ArrayAdapter aAdapter;
+    private String[] users = { "Boban","Tovino","Nivin","Prithvi","Lal","Asif"};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mListView = (ListView) findViewById(R.id.userlist);
+        aAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, users);
+        mListView.setAdapter(aAdapter);
+    }
+}
