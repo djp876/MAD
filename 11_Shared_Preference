@@ -1,0 +1,110 @@
+11.Develop an android application using shared preference cycle?
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/etName"
+android:hint="Name" />
+
+<EditText
+android:id="@+id/etAge"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:hint="Age"
+android:layout_below="@+id/etName"/>
+
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Save"
+android:id="@+id/btnSave"
+android:layout_below="@+id/etAge"
+android:layout_alignParentLeft="true"
+android:onClick="save"
+android:layout_marginTop="30dp" />
+
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Clear"
+android:id="@+id/btnClear"
+android:layout_below="@+id/btnSave"
+android:layout_alignParentLeft="true"
+android:onClick="clear"
+android:layout_marginTop="30dp" />
+
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Show"
+android:id="@+id/btnShow"
+android:layout_below="@+id/btnClear"
+android:layout_alignParentLeft="true"
+android:onClick="show"
+android:layout_marginTop="30dp" />
+
+</RelativeLayout>
+
+
+
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+EditText etAge,etName;
+public static final String USER_PREF = "USER_PREF" ;
+public static final String KEY_NAME = "KEY_NAME";
+public static final String KEY_AGE = "KEY_AGE";
+SharedPreferences sp;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+etName=(EditText)findViewById(R.id.etName);
+etAge=(EditText)findViewById(R.id.etAge);
+sp = getSharedPreferences(USER_PREF, Context.MODE_PRIVATE);
+}
+public void save(View v)
+{
+String name = etName.getText().toString();
+int age = Integer.valueOf(etAge.getText().toString());
+SharedPreferences.Editor editor = sp.edit();
+editor.putString(KEY_NAME, name);
+editor.putInt(KEY_AGE, age);
+editor.commit();
+Toast.makeText(this, "Your Data is Saved!", Toast.LENGTH_SHORT).show();
+}
+public void show(View v)
+{
+StringBuilder str = new StringBuilder();
+if (sp.contains(KEY_NAME))
+{
+etName.setText(sp.getString(KEY_NAME, ""));
+}
+if (sp.contains(KEY_AGE))
+{
+etAge.setText(String.valueOf(sp.getInt(KEY_AGE, 0)));
+}
+}
+
+public void clear(View v)
+{
+etName.setText("");
+etAge.setText("");
+}
+}
